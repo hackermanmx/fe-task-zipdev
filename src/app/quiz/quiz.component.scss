@@ -1,0 +1,82 @@
+$blue : #374ddb;
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
+.radio-group,
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.radio-button {
+  margin: 5px;
+}
+
+input {
+  min-width: 300px;
+}
+
+.container {
+  max-width: 600px;
+}
+
+.answers {
+  div {
+    border-bottom: .5px solid #ececec;
+    padding: 15px 0;
+  }
+
+  ul {
+    margin: 15px 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    li {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0 10px;
+
+      .material-icons {
+        margin-right: 5px;
+        font-size: 16px;
+        height: 16px;
+        width: 16px;
+      }
+    }
+  }
+
+  .palindrome-answer {
+    position: relative;
+
+    &:before {
+      font-style: normal;
+      position: absolute;
+      bottom: -20px;
+    }
+
+    &.incorrect:before {
+      content: 'X Not a palindrome.';
+      color: red;
+    }
+
+    &.correct {
+      &:before {
+        content: '✓ Correct! This is a palindrome!';
+        color: $blue;
+      }
+    }
+  }
+
+  .selected {
+    border-radius: 25px;
+    padding: 5px 10px;
+    background-color: $blue;
+    color: white;
+  }
+}

@@ -1,0 +1,43 @@
+<div *ngIf="getRestaurant$ | async as restaurant">
+  <div *ngIf="!restaurant.success" class="justify-content-center d-flex">
+    <mat-card class="mb-3 cursor-pointer">
+      <div *ngIf="restaurant; else spinner" class="card-container" (click)="openUrl(restaurant.url)">
+        <img *ngIf="restaurant.featured_image; else noImg"
+             [src]="restaurant.featured_image" [alt]="restaurant.name"/>
+        <ng-template #noImg>
+          <img src="https://via.placeholder.com/150/d3d3d3/FFFFFF?text=No Image">
+        </ng-template>
+        <div class="d-flex justify-content-between flex-column">
+          <div class="card-top d-flex justify-content-between align-items-center">
+            <h2>{{restaurant.name}}</h2>
+            <div class="rating d-flex flex-column align-items-center">
+              <label>{{restaurant.user_rating.aggregate_rating}} <span>/5</span></label>
+              <label class="text-mute">{{restaurant.user_rating.votes}} votes</label>
+            </div>
+          </div>
+
+          <div>
+            <div class="card-body text-mute">
+              <label>{{restaurant.location.locality}}</label>
+              <label>{{restaurant.cuisines}}</label>
+            </div>
+
+            <div class="card-bottom">
+              <label [class]="restaurant.is_delivering_now ? 'text-success' : 'text-danger'">
+                {{restaurant.is_delivering_now ? 'Open Now' : 'Closed Now'}}
+              </label>
+              <label class="text-danger">{{restaurant.cuisines}}</label>
+              <label class="text-mute">Costs {{restaurant.average_cost_for_two | currency}} for two</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #spinner>
+        <div class="d-flex justify-content-center align-items-center"
+             #spinner>
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </mat-card>
+  </div>
+</div>

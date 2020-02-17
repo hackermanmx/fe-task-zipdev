@@ -1,0 +1,114 @@
+<article class="container">
+
+<mat-vertical-stepper [linear]="true" #stepper style="background-color: transparent">
+  <mat-step [stepControl]="form1.control">
+    <form #form1="ngForm">
+      <ng-template matStepLabel>{{labels[0]}}</ng-template>
+      <mat-radio-group required name="first_question" [(ngModel)]="form.first">
+        <mat-radio-button *ngFor="let item of questions.first;" class="radio-group" [value]="item.value">{{item.value}}</mat-radio-button>
+      </mat-radio-group>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="form2.control">
+    <form #form2="ngForm">
+      <ng-template matStepLabel>{{labels[1]}}</ng-template>
+      <div class="checkbox-container">
+        <mat-checkbox name="second_question" [(ngModel)]="form.second[i]"
+                      *ngFor="let item of questions.second; let i = index" [value]="item.value">{{item.value}}</mat-checkbox>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="form3">
+    <form #form3="ngForm">
+      <ng-template matStepLabel>{{labels[2]}}</ng-template>
+      <mat-form-field>
+        <input matInput required name="third_question" [(ngModel)]="form.third" placeholder="Try me...">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="form4" >
+    <form #form4="ngForm">
+      <ng-template matStepLabel>{{labels[3]}}</ng-template>
+      <div>
+        <mat-form-field>
+          <input matInput required  name="sentence1" [(ngModel)]="form.fourth.sentence1" placeholder="Enter a simple sentence...">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput required name="sentence2" [(ngModel)]="form.fourth.sentence2" placeholder="Try now in reverse...">
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>See my results</ng-template>
+
+    <div class="answers">
+      <div>
+        <label>{{labels[0]}}</label>
+        <ul>
+          <li *ngFor="let item of questions.first"
+              [class]="item.value === form.first ? 'selected' : ''">{{item.value}}</li>
+        </ul>
+      </div>
+
+      <div>
+        <label>{{labels[1]}}</label>
+        <ul>
+          <li *ngFor="let item of questions.second; let i = index"
+              [class.selected]="form.second[i]">
+            <mat-icon *ngIf="item.valid && form.second[i]">check</mat-icon>
+            {{item.value}}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <label>{{labels[2]}}</label>
+        <address class="palindrome-answer" [class]="isPalindrome(form.third) ? 'correct' : 'incorrect'">{{form.third}}</address>
+      </div>
+
+      <div>
+        <label>{{labels[3]}}</label>
+        <address class="palindrome-answer" [class]="isPalindrome(form.fourth.sentence1, form.fourth.sentence2) ? 'correct' : 'incorrect'">
+          <p>{{form.fourth.sentence1}}</p>
+          <p>{{form.fourth.sentence2}}</p>
+        </address>
+      </div>
+
+    </div>
+
+    <!--<div>-->
+      <!--<button mat-button matStepperPrevious>Back</button>-->
+    <!--</div>-->
+  </mat-step>
+
+  <ng-template matStepperIcon="check">
+      <mat-icon>check</mat-icon>
+  </ng-template>
+</mat-vertical-stepper>
+
+    <mat-progress-bar mode="determinate" [value]="checkProgress()"></mat-progress-bar>
+
+
+</article>

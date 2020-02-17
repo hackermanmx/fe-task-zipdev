@@ -1,0 +1,56 @@
+.d-flex {
+  display: flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.two-cols {
+  grid-template-columns: .25fr 1fr;
+  grid-column-gap: 1rem;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.text-success {
+  color: #3d7e00;
+}
+
+.text-danger {
+  color: #9b4e5b;
+}
+
+.text-mute {
+  color: #abaeb5;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.w-100 {
+  width: 100%;
+}
